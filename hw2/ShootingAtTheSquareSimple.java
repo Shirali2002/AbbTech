@@ -6,9 +6,8 @@ import java.util.Scanner;
 
 public class ShootingAtTheSquareSimple {
     private final Scanner sc = new Scanner(System.in);
-    private final Random rnd = new Random();
-    private char[][] square = new char[5][5];
-    private int[] target = new int[2]; // {x, y}
+    private final char[][] square = new char[5][5];
+    private final int[] target = new int[2]; // {x, y}
 
 
     // Constructor
@@ -17,6 +16,7 @@ public class ShootingAtTheSquareSimple {
             Arrays.fill(chars, '-');
         }
 
+        Random rnd = new Random();
         target[0] = rnd.nextInt(5);
         target[1] = rnd.nextInt(5);
 
