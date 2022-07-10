@@ -75,6 +75,14 @@ public class ShootingAtTheSquareAdvanced {
                 continue;
             }
 
+            /*
+            * if user entered correct coordinates again and again,
+            * program will not count this coordinates as correct option. */
+            if (square[axisY][axisX] == 'x'){
+                printSquare();
+                continue;
+            }
+
             boolean check = false;
             for (int[] target : targets) {
                 if (target[0] == axisX && target[1] == axisY) {
