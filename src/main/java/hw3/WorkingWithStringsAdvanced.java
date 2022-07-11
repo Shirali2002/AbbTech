@@ -7,8 +7,10 @@ public class WorkingWithStringsAdvanced {
     private final Scanner sc = new Scanner(System.in);
     private boolean whileChecker = true;
 
-
-    public WorkingWithStringsAdvanced(){
+    /**
+     * array filling process in constructor
+     */
+    public WorkingWithStringsAdvanced() {
         scedule[0][0] = "Sunday";
         scedule[0][1] = "do home work";
         scedule[1][0] = "Monday";
@@ -25,99 +27,111 @@ public class WorkingWithStringsAdvanced {
         scedule[6][1] = "go to park";
     }
 
-    public void start(){
+    /**
+     * start process
+     */
+    public void start() {
         weekPlanner();
     }
 
-    private void weekPlanner(){
-        while (whileChecker){
+    /**
+     * input process and method selection process
+     */
+    private void weekPlanner() {
+        while (whileChecker) {
             System.out.println("Please, input the day of the week:");
             String weekDayInput = sc.nextLine().trim().toLowerCase();
 
-            if (weekDayInput.startsWith("change") || weekDayInput.startsWith("reschedule")){
+            if (weekDayInput.startsWith("change") || weekDayInput.startsWith("reschedule")) {
                 String[] weekSplit = weekDayInput.split(" ");
-                rescheduler(weekSplit[weekSplit.length-1]);
+                if (weekSplit.length<2){
+                    continue;   // if user entered for example "change", program will continue
+                }
+                String weekDay = weekSplit[weekSplit.length - 1].substring(0, 1).toUpperCase() +
+                                 weekSplit[weekSplit.length - 1].substring(1);
+                System.out.printf("Please, input new tasks for %s.\n", weekDay);
+                rescheduler(weekDay);
 
-            }else {
-                printScedule(weekDayInput);
+            } else {
+                System.out.println(printScedule(weekDayInput));
             }
         }
 
     }
 
-    private void rescheduler(String weekDay){
+    /**
+     * reschedule process
+     */
+    private void rescheduler(String weekDay) {
         String task;
         switch (weekDay) {
-            case "monday":
-                System.out.println("Please, input new tasks for Monday.");
-                task = sc.nextLine();
-                scedule[1][1] = task;
+            case "Monday":
+                scedule[1][1] = sc.nextLine();
                 break;
-            case "tuesday":
-                System.out.println("Please, input new tasks for Tuesday.");
-                task = sc.nextLine();
-                scedule[2][1] = task;
+            case "Tuesday":
+                scedule[2][1] = sc.nextLine();
                 break;
-            case "wednesday":
-                System.out.println("Please, input new tasks for Wednesday.");
-                task = sc.nextLine();
-                scedule[3][1] = task;
+            case "Wednesday":
+                scedule[3][1] = sc.nextLine();
                 break;
-            case "thursday":
-                System.out.println("Please, input new tasks for Thursday.");
-                task = sc.nextLine();
-                scedule[4][1] = task;
+            case "Thursday":
+                scedule[4][1] = sc.nextLine();
                 break;
-            case "friday":
-                System.out.println("Please, input new tasks for Friday.");
-                task = sc.nextLine();
-                scedule[5][1] = task;
+            case "Friday":
+                scedule[5][1] = sc.nextLine();
                 break;
-            case "saturday":
-                System.out.println("Please, input new tasks for Saturday.");
-                task = sc.nextLine();
-                scedule[6][1] = task;
+            case "Saturday":
+                scedule[6][1] = sc.nextLine();
                 break;
-            case "sunday":
-                System.out.println("Please, input new tasks for Sunday.");
-                task = sc.nextLine();
-                scedule[0][1] = task;
+            case "Sunday":
+                scedule[0][1] = sc.nextLine();
                 break;
             default:
-                System.out.println("Sorry, I don't understand you, please try again.");
+                System.out.println("OOPS. Sorry, I don't understand you, please try again.");
         }
 
     }
 
-    private void printScedule(String weekDay){
-        switch (weekDay) {
+    /**
+     * print process
+     */
+    private String printScedule(String weekDayInput) {
+        String result;
+
+        /** selection process*/
+        switch (weekDayInput.toLowerCase().trim()) {
             case "monday":
-                System.out.printf("Your tasks for Monday: %s\n", scedule[1][1]);
+                result = "Your tasks for Monday: " + scedule[1][1];
                 break;
             case "tuesday":
-                System.out.printf("Your tasks for Tuesday: %s\n", scedule[2][1]);
+                result = "Your tasks for Tuesday: " + scedule[2][1];
+
                 break;
             case "wednesday":
-                System.out.printf("Your tasks for Wednesday: %s\n", scedule[3][1]);
+                result = "Your tasks for Wednesday: " + scedule[3][1];
+
                 break;
             case "thursday":
-                System.out.printf("Your tasks for Thursday: %s\n", scedule[4][1]);
+                result = "Your tasks for Thursday: " + scedule[4][1];
+
                 break;
             case "friday":
-                System.out.printf("Your tasks for Friday: %s\n", scedule[5][1]);
+                result = "Your tasks for Friday: " + scedule[5][1];
                 break;
             case "saturday":
-                System.out.printf("Your tasks for Saturday: %s\n", scedule[6][1]);
+                result = "Your tasks for Saturday: " + scedule[6][1];
                 break;
             case "sunday":
-                System.out.printf("Your tasks for Sunday: %s\n", scedule[0][1]);
+                result = "Your tasks for Sunday: " + scedule[0][1];
                 break;
             case "exit":
-                System.out.println("Thank you for using week planner.");
+                result = "Thank you for using week planner.";
                 whileChecker = false;
                 break;
             default:
-                System.out.println("Sorry, I don't understand you, please try again.");
+                result = "Sorry, I don't understand you, please try again.";
         }
+
+        return result;
     }
 }

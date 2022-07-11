@@ -4,10 +4,14 @@ import java.util.Arrays;
 
 public class Test {
     public static void main(String[] args) {
-        String[][] questionArr = new String[3][3];
-//        questionArr[0][0] = "ayuye";
-//        questionArr[1][0] =
+        String a = "  change      MOnday   ".trim().toLowerCase();
 
-        System.out.println(Arrays.asList(questionArr));
+        String[] splitted = a.split(" ");
+        System.out.println(splitted[splitted.length-1]);
+
+
+//        for (String s: splitted) {
+//            System.out.println(s);
+//        }
     }
 }
