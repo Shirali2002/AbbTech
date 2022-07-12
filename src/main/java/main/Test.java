@@ -9,7 +9,6 @@ public class Test {
         String[] splitted = a.split(" ");
         System.out.println(splitted[splitted.length-1]);
 
-
 //        for (String s: splitted) {
 //            System.out.println(s);
 //        }

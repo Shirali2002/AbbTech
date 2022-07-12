@@ -61,17 +61,17 @@ public class ShootingAtTheSquareAdvanced {
         int count = targets.length;
         while (true) {
             System.out.println("Enter horizontal coordinate for fire!");
-            String axisXStr = sc.nextLine();
-            int axisX = getInt(axisXStr) - 1;
-            if (axisX == -2) {
+            String axisYStr = sc.nextLine();
+            int axisY = getInt(axisYStr) - 1;
+            if (axisY == -2) {
                 continue;
             }
 
 
             System.out.println("Enter vertical coordinate for fire!");
-            String axisYStr = sc.nextLine();
-            int axisY = getInt(axisYStr) - 1;
-            if (axisY == -2) {
+            String axisXStr = sc.nextLine();
+            int axisX = getInt(axisXStr) - 1;
+            if (axisX == -2) {
                 continue;
             }
 
