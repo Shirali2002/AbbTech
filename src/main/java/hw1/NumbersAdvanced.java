@@ -15,10 +15,10 @@ public class NumbersAdvanced {
 
     // start game
     public static void startGame() {
-        System.out.println("""
-                Well-known event game   [1]
-                Number guess game       [2]
-                Which game do you want to play?""");
+//        System.out.println("""
+//                Well-known event game   [1]
+//                Number guess game       [2]
+//                Which game do you want to play?""");
         String option = sc.nextLine();
         if (option.equals("1")) {
             eventGame();
