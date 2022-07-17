@@ -1,6 +1,6 @@
-package hw4.advanced;
+package hw4;
 
-public class Main {
+class Main {
     public static void main(String[] args) {
         firstPart();
         secondPart();

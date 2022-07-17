@@ -1,9 +1,9 @@
-package hw4.advanced;
+package hw4;
 
 
 import java.util.Random;
 
-public class Human {
+class Human {
     /**
      * All variables, constructors and methods use default access modifier.
      * Because I want to use these classes only inside the hw4 package.
@@ -92,7 +92,9 @@ public class Human {
 
     @Override
     public String toString() {
-        if (hasPet()){
+        if (name == null){
+            return "";
+        } else if (hasPet()){
             return "Human{" +
                     "name='" + name + '\'' +
                     ", surname='" + surname + '\'' +

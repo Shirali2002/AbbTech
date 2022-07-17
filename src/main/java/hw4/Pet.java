@@ -1,9 +1,9 @@
-package hw4.simple;
+package hw4;
 
 import java.util.Arrays;
 
 
-public class Pet {
+class Pet {
     /**
      * All variables, constructors and methods use default access modifier.
      * Because i want to use these classes only in hw4 package
