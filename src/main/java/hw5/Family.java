@@ -32,6 +32,9 @@ class Family {
     }
 
     public Family(Human mother, Human father, Human... children) {
+//        mother.setStatus(Status.MOTHER);
+//        mother.setStatus(Status.MOTHER);
+//        mother.setStatus(Status.MOTHER);
         this.mother = mother;
         this.father = father;
         this.children = children;
@@ -87,12 +90,15 @@ class Family {
     private void setFamilyToChildren(Human[] children) {
         for (Human child : children) {
             child.setFamily(this);
+            child.setStatus(Status.CHILD);
         }
     }
 
     private void setFamilyToParent(Human mother, Human father) {
         mother.setFamily(this);
+        mother.setStatus(Status.MOTHER);
         father.setFamily(this);
+        father.setStatus(Status.FATHER);
     }
 
     public void addChild(Human child) {
@@ -101,6 +107,7 @@ class Family {
         newChildren[newChildren.length - 1] = child;
         this.children = newChildren;
         child.setFamily(this);
+        child.setStatus(Status.CHILD);
     }
 
     public boolean deleteChild(int index) {
@@ -108,6 +115,7 @@ class Family {
             return false;
         }
         children[index].setFamily(null);
+        children[index].setStatus(Status.NONE);
         Human[] newChildren = new Human[children.length - 1];
         for (int i = 0, j = 0; i < children.length; i++) {
             if (i != index) {

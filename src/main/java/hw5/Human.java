@@ -5,26 +5,37 @@ import java.util.Arrays;
 import java.util.Objects;
 import java.util.Random;
 
+enum Status {
+    NONE,
+    FATHER,
+    MOTHER,
+    CHILD
+}
+
 class Human {
-    /** FIELDS */
+    /**
+     * FIELDS
+     */
     private String name;
     private String surname;
     private int year;
     private int iq;
     private Family family;
     private String[][] schedule; //[day of the week] x [type of the activity]
+    private Status status = Status.NONE;
 
     /** STATIC BLOCK */
     static {
         System.out.printf("a new class is being loaded(%s).\n", Human.class.getName());
     }
 
-    /** INSTANCE BLOCK */
-    {
+    /** INSTANCE BLOCK */ {
         System.out.printf("a new object is created(%s).\n", this.getClass());
     }
 
-    /** CONSTRUCTORS */
+    /**
+     * CONSTRUCTORS
+     */
     Human() {
     }
 
@@ -42,16 +53,18 @@ class Human {
         this.schedule = schedule;
     }
 
-    public Human(String name, String surname, int year, int iq, Family family, String[][] schedule) {
-        this.name = name;
-        this.surname = surname;
-        this.year = year;
-        this.iq = iq;
-        this.family = family;
-        this.schedule = schedule;
-    }
+//    public Human(String name, String surname, int year, int iq, Family family, String[][] schedule) {
+//        this.name = name;
+//        this.surname = surname;
+//        this.year = year;
+//        this.iq = iq;
+//        this.family = family;
+//        this.schedule = schedule;
+//    }
 
-    /** GETTERS AND SETTERS */
+    /**
+     * GETTERS AND SETTERS
+     */
     public String getName() {
         return name;
     }
@@ -100,7 +113,17 @@ class Human {
         this.schedule = schedule;
     }
 
-    /** BEHAVIOURS */
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    /**
+     * BEHAVIOURS
+     */
     void greetPet() {
         if (!hasPet()) {
             return;
@@ -149,25 +172,39 @@ class Human {
         if (this == o) return true;
         Human human = (Human) o;
 
+        if (status == Status.CHILD) {
+            return  /** HUMAN IDENTIFICATION */
+                    year == human.year &&
+                    name.equals(human.name) &&
+                    surname.equals(human.surname) &&
+                    /** HUMAN'S FAMILY IDENTIFICATION */
+                    family.getFather().getName().equals(human.family.getFather().getName()) &&
+                    family.getFather().getSurname().equals(human.family.getFather().getSurname()) &&
+                    family.getFather().getYear() == human.family.getFather().getYear() &&
+                    family.getMother().getName().equals(human.family.getMother().getName()) &&
+                    family.getMother().getSurname().equals(human.family.getMother().getSurname()) &&
+                    family.getMother().getYear() == human.family.getMother().getYear();
+        }else {
+            return  /** HUMAN IDENTIFICATION */
+                    year == human.year &&
+                    name.equals(human.name) &&
+                    surname.equals(human.surname);
+        }
 
-        return  /** HUMAN IDENTIFICATION */
-                year == human.year &&
-                name.equals(human.name) &&
-                surname.equals(human.surname) &&
-                /** HUMAN'S FAMILY IDENTIFICATION */
-                family.getFather().getName().equals(human.family.getFather().getName()) &&
-                family.getFather().getSurname().equals(human.family.getFather().getSurname()) &&
-                family.getFather().getYear() == human.family.getFather().getYear() &&
-                family.getMother().getName().equals(human.family.getMother().getName()) &&
-                family.getMother().getSurname().equals(human.family.getMother().getSurname()) &&
-                family.getMother().getYear() == human.family.getMother().getYear();
 
     }
 
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, surname, year);
+        if (status == Status.CHILD) {
+            return Objects.hash(name, surname, year,
+                                family.getFather().getName(), family.getFather().getSurname(), family.getFather().getYear(),
+                                family.getMother().getName(), family.getMother().getSurname(), family.getMother().getYear());
+        }else {
+            return Objects.hash(name, surname, year);
+
+        }
     }
 
     @Override
