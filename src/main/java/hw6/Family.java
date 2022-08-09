@@ -7,7 +7,7 @@ import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class Family {
+public class Family {
     /**
      * FIELDS
      */

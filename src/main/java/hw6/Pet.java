@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.Objects;
 
 
-class Pet {
+public class Pet {
     /**
      * All variables, constructors and methods use default access modifier.
      * Because i want to use these classes only in hw5 package

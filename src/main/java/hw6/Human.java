@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.Objects;
 import java.util.Random;
 
-class Human {
+public class Human {
     /**
      * FIELDS
      */
@@ -31,16 +31,16 @@ class Human {
     /**
      * CONSTRUCTORS
      */
-    Human() {
+    public Human() {
     }
 
-    Human(String name, String surname, Integer year) {
+    public Human(String name, String surname, Integer year) {
         this.name = name;
         this.surname = surname;
         this.year = year>=0 ? year : null;
     }
 
-    Human(String name, String surname, Integer year, Integer iq, String[][] schedule) {
+    public Human(String name, String surname, Integer year, Integer iq, String[][] schedule) {
         this.name = name;
         this.surname = surname;
         this.year = year>=0 ? year : null;

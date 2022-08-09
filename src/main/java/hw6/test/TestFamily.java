@@ -1,6 +1,8 @@
-package hw6;
+package hw6.test;
 
-
+import hw6.Family;
+import hw6.Human;
+import hw6.Pet;
 import hw6.enums.Species;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
