@@ -17,8 +17,8 @@ public class Family implements HumanCreator {
     private AbstractHuman[] children;
     private AbstractPet pet;
 
-    private List<String> boyNameList;
-    private List<String> girlNameList;
+    private final List<String> boyNameList;
+    private final List<String> girlNameList;
 
 
     /** STATIC BLOCK */
