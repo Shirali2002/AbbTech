@@ -3,7 +3,9 @@ package hw8.abstracts;
 import hw8.enums.Species;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 
 public abstract class AbstractPet {
@@ -18,7 +20,7 @@ public abstract class AbstractPet {
     private String nickname;
     private Integer age;
     private Integer trickLevel;
-    private String[] habits;
+    private Set<String> habits;
 
     static {
         System.out.printf("a new class is being loaded(%s).\n", AbstractPet.class.getName());
@@ -27,6 +29,7 @@ public abstract class AbstractPet {
     {
         System.out.printf("a new object is created(%s).\n", this.getClass());
         this.species = Species.UNKNOWN;
+        habits = new HashSet<>();
     }
 
     /**
@@ -35,11 +38,15 @@ public abstract class AbstractPet {
     public AbstractPet() {
     }
 
+    public AbstractPet(Set<String> habits) {
+        this.habits = habits;
+    }
+
     public AbstractPet(String nickname) {
         this.nickname = nickname;
     }
 
-    public AbstractPet(String nickname, int age, int trickLevel, String... habits) {
+    public AbstractPet(String nickname, int age, int trickLevel, Set<String> habits) {
         this.nickname = nickname;
         this.age = age >= 0 ? age : null;
         this.trickLevel = trickLevel >= 0 ? trickLevel : null;
@@ -81,11 +88,11 @@ public abstract class AbstractPet {
         this.trickLevel = trickLevel >= 0 ? trickLevel : null;
     }
 
-    public String[] getHabits() {
+    public Set<String> getHabits() {
         return habits;
     }
 
-    public void setHabits(String[] habits) {
+    public void setHabits(Set<String> habits) {
         this.habits = habits;
     }
 
@@ -135,7 +142,7 @@ public abstract class AbstractPet {
         else stringBuilder.append("nickname='").append(nickname).append('\'');
         if (age != null) stringBuilder.append(", age=").append(age);
         if (trickLevel != null) stringBuilder.append(", trickLevel=").append(trickLevel);
-        if (habits != null) stringBuilder.append(", habits=").append(Arrays.toString(habits));
+        if (habits.size() != 0) stringBuilder.append(", habits=").append(habits);
         stringBuilder.append('}');
 
         return stringBuilder.toString();

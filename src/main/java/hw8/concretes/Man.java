@@ -1,6 +1,9 @@
 package hw8.concretes;
 
+import hw8.enums.DayOfWeek;
 import hw8.abstracts.AbstractHuman;
+
+import java.util.Map;
 
 public class Man extends AbstractHuman {
 
@@ -11,16 +14,14 @@ public class Man extends AbstractHuman {
         super(name, surname, year);
     }
 
-    public Man(String name, String surname, Integer year, Integer iq, String[][] schedule) {
+    public Man(String name, String surname, Integer year, Integer iq, Map<DayOfWeek, String> schedule) {
         super(name, surname, year, iq, schedule);
     }
 
     @Override
     public void greetPet() {
-        if (!super.hasPet()) {
-            return;
-        }
-        System.out.printf("Hello, %s\n", super.getFamily().getPet().getNickname());
+        if (super.hasNotPet())    return;
+        super.getFamily().getPet().forEach(p -> System.out.printf("Hello, %s\n", p.getNickname()));
     }
 
     public void repairCar(){

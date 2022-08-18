@@ -4,6 +4,8 @@ import hw8.abstracts.AbstractPet;
 import hw8.abstracts.FoulInter;
 import hw8.enums.Species;
 
+import java.util.Set;
+
 public class DomesticCat extends AbstractPet implements FoulInter {
 
     static {
@@ -19,7 +21,7 @@ public class DomesticCat extends AbstractPet implements FoulInter {
         this.setSpecies(Species.DOMESTICCAT);
     }
 
-    public DomesticCat(String nickname, int age, int trickLevel, String... habits) {
+    public DomesticCat(String nickname, int age, int trickLevel, Set<String> habits) {
         super(nickname, age, trickLevel, habits);
         this.setSpecies(Species.DOMESTICCAT);
     }

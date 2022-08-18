@@ -2,11 +2,11 @@ package hw8.abstracts;
 
 
 import hw8.concretes.Family;
+import hw8.enums.DayOfWeek;
 import hw8.enums.Status;
 
-import java.util.Arrays;
-import java.util.Objects;
-import java.util.Random;
+import java.util.*;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public abstract class AbstractHuman {
     /**
@@ -17,7 +17,7 @@ public abstract class AbstractHuman {
     private Integer year;
     private Integer iq;
     private Family family;
-    private String[][] schedule; //[day of the week] x [type of the activity]
+    private Map<DayOfWeek, String> schedule; //[day of the week] x [type of the activity]
     private Status status = Status.NONE;
 
     /** STATIC BLOCK */
@@ -27,6 +27,7 @@ public abstract class AbstractHuman {
 
     /** INSTANCE BLOCK */ {
         System.out.printf("a new object is created(%s).\n", this.getClass());
+        schedule = new HashMap<>();
     }
 
     /**
@@ -41,7 +42,7 @@ public abstract class AbstractHuman {
         this.year = year >= 0 ? year : null;
     }
 
-    public AbstractHuman(String name, String surname, Integer year, Integer iq, String[][] schedule) {
+    public AbstractHuman(String name, String surname, Integer year, Integer iq, Map<DayOfWeek, String> schedule) {
         this.name = name;
         this.surname = surname;
         this.year = year >= 0 ? year : null;
@@ -92,11 +93,11 @@ public abstract class AbstractHuman {
         this.family = family;
     }
 
-    public String[][] getSchedule() {
+    public Map<DayOfWeek, String> getSchedule() {
         return schedule;
     }
 
-    public void setSchedule(String[][] schedule) {
+    public void setSchedule(Map<DayOfWeek, String> schedule) {
         this.schedule = schedule;
     }
 
@@ -114,36 +115,38 @@ public abstract class AbstractHuman {
     public abstract void greetPet();
 
     public void describePet() {
-        if (!hasPet()) {
-            return;
-        }
-        System.out.printf("I have a %s, he is %d years old, he is %s\n",
-                family.getPet().getSpecies(), family.getPet().getAge(), family.getPet().getTrickLevel() <= 50 ? "almost not sly" : "very sly");
+        if (hasNotPet()) return;
+
+        this.family.getPet().forEach(p -> {
+            System.out.printf("I have a %s, he is %d years old, he is %s\n",
+                    p.getSpecies(),
+                    p.getAge(),
+                    p.getTrickLevel() <= 50 ? "almost not sly" : "very sly");
+        });
+
     }
 
     public boolean feedPet(boolean isTimeFeed) {
-        if (!hasPet()) {
-            return false;
-        }
+        if (hasNotPet()) return false;
 
-        boolean result = false;
+        AtomicBoolean result = new AtomicBoolean(false);
 
         if (isTimeFeed) {
-            result = true;
+            result.set(true);
         } else {
             int pseudorandom = new Random().nextInt(99) + 1;
-            if (this.family.getPet().getTrickLevel() > pseudorandom) result = true;
+            this.family.getPet().forEach(p -> {
+                if(p.getTrickLevel() > pseudorandom) result.set(true);
+                if (result.get()) System.out.printf("Hm... I will feed Jack's %s/\n", p.getNickname());
+                else System.out.println("I think Jack is not hungry.");
+            });
         }
 
-        if (result) System.out.printf("Hm... I will feed Jack's %s/\n", this.family.getPet().getNickname());
-        else System.out.println("I think Jack is not hungry.");
-
-        return result;
-
+        return result.get();
     }
 
-    protected boolean hasPet() {
-        return this.family.getPet() != null;
+    protected boolean hasNotPet() {
+        return this.family.getPet().size() == 0;
     }
 
     @Override
@@ -198,7 +201,7 @@ public abstract class AbstractHuman {
         if (surname != null) stringBuilder.append(", surname='").append(surname).append('\'');
         if (year != null) stringBuilder.append(", year=").append(year);
         if (iq != null) stringBuilder.append(", iq=").append(iq);
-        if (schedule != null) stringBuilder.append(", schedule=").append(Arrays.deepToString(schedule));
+        if (schedule != null) stringBuilder.append(", schedule=").append(schedule);
         stringBuilder.append('}');
 
         return stringBuilder.toString();

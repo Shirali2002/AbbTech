@@ -3,6 +3,8 @@ package hw8.concretes;
 import hw8.abstracts.AbstractPet;
 import hw8.enums.Species;
 
+import java.util.Set;
+
 public class Fish extends AbstractPet {
 
     static {
@@ -18,7 +20,7 @@ public class Fish extends AbstractPet {
         this.setSpecies(Species.FISH);
     }
 
-    public Fish(String nickname, int age, int trickLevel, String... habits) {
+    public Fish(String nickname, int age, int trickLevel, Set<String> habits) {
         super(nickname, age, trickLevel, habits);
         this.setSpecies(Species.FISH);
     }
