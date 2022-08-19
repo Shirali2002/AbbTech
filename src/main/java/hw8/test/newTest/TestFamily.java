@@ -5,10 +5,13 @@ import hw8.concretes.Dog;
 import hw8.concretes.Family;
 import hw8.concretes.Man;
 import hw8.concretes.Woman;
+import hw8.enums.DayOfWeek;
 import hw8.enums.Status;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+
+import java.util.*;
 
 public class TestFamily {
     Family family;
@@ -23,32 +26,34 @@ public class TestFamily {
 
     @Test
     public void testBornChildIsNewChildCreated(){
-        Man father1 = new Man("father", "Adigozelov", 2012, 40,
-                new String[][]{{"monday", "do homework"}, {"saturday", "Take the dog for a walk."}});
-        Woman mother1 = new Woman("mother", "Adigozelova", 2012, 60,
-                new String[][]{{"monday", "do homework"}, {"saturday", "Take the dog for a walk."}});
-        Woman child1 = new Woman("child1", "Adigozelova", 2012, 45,
-                new String[][]{{"monday", "do homework"}, {"saturday", "Take the dog for a walk."}});
-        Dog pet1 = new Dog("Toplan", 3, 65, "eat", "drink", "sleep", "run");
-
-        family = new Family(mother1, father1, pet1, child1);
+        Man father1 = new Man("father", "Adigozelov", 2012, 50,
+            Map.of(DayOfWeek.MONDAY, "do homework", DayOfWeek.SATURDAY, "Take the dog for a walk."));
+        Woman mother1 = new Woman("mother", "Adigozelova", 2012, 50,
+            Map.of(DayOfWeek.MONDAY, "do homework", DayOfWeek.SATURDAY, "Take the dog for a walk."));
+        Woman child1 = new Woman("child1", "Adigozelova", 2012, 50,
+            Map.of(DayOfWeek.MONDAY, "do homework", DayOfWeek.SATURDAY, "Take the dog for a walk."));
+        Dog pet1 = new Dog("Toplan", 3, 65,
+            new HashSet<>(Arrays.asList("eat", "drink", "sleep", "run")));
+        family = new Family(mother1, father1, new HashSet<>(List.of(pet1)), new ArrayList<>(List.of(child1)));
 
         AbstractHuman newChild = family.bornChild();
+        System.out.println(newChild);
+        System.out.println(family);
 
         Assertions.assertNotNull(newChild);
     }
 
     @Test
     public void testBornChildIsChildCorrect(){
-        Man father1 = new Man("father", "Adigozelov", 2012, 40,
-                new String[][]{{"monday", "do homework"}, {"saturday", "Take the dog for a walk."}});
-        Woman mother1 = new Woman("mother", "Adigozelova", 2012, 60,
-                new String[][]{{"monday", "do homework"}, {"saturday", "Take the dog for a walk."}});
-        Woman child1 = new Woman("child1", "Adigozelova", 2012, 45,
-                new String[][]{{"monday", "do homework"}, {"saturday", "Take the dog for a walk."}});
-        Dog pet1 = new Dog("Toplan", 3, 65, "eat", "drink", "sleep", "run");
-
-        family = new Family(mother1, father1, pet1, child1);
+        Man father1 = new Man("father", "Adigozelov", 2012, 50,
+            Map.of(DayOfWeek.MONDAY, "do homework", DayOfWeek.SATURDAY, "Take the dog for a walk."));
+        Woman mother1 = new Woman("mother", "Adigozelova", 2012, 50,
+            Map.of(DayOfWeek.MONDAY, "do homework", DayOfWeek.SATURDAY, "Take the dog for a walk."));
+        Woman child1 = new Woman("child1", "Adigozelova", 2012, 50,
+            Map.of(DayOfWeek.MONDAY, "do homework", DayOfWeek.SATURDAY, "Take the dog for a walk."));
+        Dog pet1 = new Dog("Toplan", 3, 65,
+            new HashSet<>(Arrays.asList("eat", "drink", "sleep", "run")));
+        family = new Family(mother1, father1, new HashSet<>(List.of(pet1)), new ArrayList<>(List.of(child1)));
 
         AbstractHuman newChild = family.bornChild();
 

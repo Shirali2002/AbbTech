@@ -6,6 +6,8 @@ import hw8.enums.DayOfWeek;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Map;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
@@ -18,11 +20,11 @@ public class TestHumanOldFunctions {
     @BeforeEach
     public void testEnv(){
         human1 = new Man("Ferhad", "Adigozelov", 2012, 50,
-                new String[][]{{DayOfWeek.MONDAY.name(), "do homework"}, {DayOfWeek.FRIDAY.name(), "Take the dog for a walk."}});
+            Map.of(DayOfWeek.MONDAY, "do homework", DayOfWeek.FRIDAY, "Take the dog for a walk."));
         human2 = new Man("Ferhad", "Adigozelov", 2012, 50,
-                new String[][]{{DayOfWeek.MONDAY.name(), "do homework"}, {DayOfWeek.FRIDAY.name(), "Take the dog for a walk."}});
+            Map.of(DayOfWeek.MONDAY, "do homework", DayOfWeek.FRIDAY, "Take the dog for a walk."));
         human3 = new Man("Ferid", "Adigozelov", 1990, 50,
-                new String[][]{{DayOfWeek.MONDAY.name(), "do homework"}, {DayOfWeek.FRIDAY.name(), "Take the dog for a walk."}});
+            Map.of(DayOfWeek.MONDAY, "do homework", DayOfWeek.FRIDAY, "Take the dog for a walk."));
     }
 
     @Test

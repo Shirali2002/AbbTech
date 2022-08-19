@@ -4,6 +4,9 @@ import hw8.concretes.Dog;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+import java.util.HashSet;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
@@ -15,9 +18,9 @@ public class TestPetOldFunctions {
 
     @BeforeEach
     public void testEnv(){
-        pet1 = new Dog("Toplan", 3, 65, "eat", "drink", "sleep", "run");
-        pet2 = new Dog("Toplan", 3, 65, "eat", "drink", "sleep", "run");
-        pet3 = new Dog("Carli", 4, 65, "eat", "drink", "sleep");
+        pet1 = new Dog("Toplan", 3, 65, new HashSet<>(Arrays.asList("eat", "drink", "sleep", "run")));
+        pet2 = new Dog("Toplan", 3, 65, new HashSet<>(Arrays.asList("eat", "drink", "sleep", "run")));
+        pet3 = new Dog("Carli", 4, 65, new HashSet<>(Arrays.asList("eat", "drink", "sleep")));
     }
 
     @Test
