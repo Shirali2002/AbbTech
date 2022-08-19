@@ -56,20 +56,6 @@ public class TestFamilyOldFunctions {
   }
 
   @Test
-  public void testToString() {
-    String res = "Family{mother=Woman{name='mother', surname='Adigozelova', year=2012, iq=50, " +
-        "schedule=[[monday, do homework], [saturday, Take the dog for a walk.]]}, " +
-        "father=Man{name='father', surname='Adigozelov', year=2012, iq=50, " +
-        "schedule=[[monday, do homework], [saturday, Take the dog for a walk.]]}, " +
-        "children=[Woman{name='child1', surname='Adigozelova', year=2012, iq=50, " +
-        "schedule=[[monday, do homework], [saturday, Take the dog for a walk.]]}], " +
-        "pet=Dog{Dog can not fly. Dog has 4 legs. Dog has fur. nickname='Toplan', " +
-        "age=3, trickLevel=65, habits=[eat, drink, sleep, run]}}";
-
-    assertEquals(res, family1.toString());
-  }
-
-  @Test
   public void testValidEquals() {
     assertEquals(family1, family2);
   }

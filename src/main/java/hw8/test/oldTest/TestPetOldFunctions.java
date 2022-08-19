@@ -24,13 +24,6 @@ public class TestPetOldFunctions {
     }
 
     @Test
-    public void testToString() {
-        String res = "Dog{Dog can not fly. Dog has 4 legs. Dog has fur. nickname='Toplan', " +
-                "age=3, trickLevel=65, habits=[eat, drink, sleep, run]}";
-        assertEquals(res, pet1.toString());
-    }
-
-    @Test
     public void testValidEquals(){
         assertEquals(pet1, pet2);
     }

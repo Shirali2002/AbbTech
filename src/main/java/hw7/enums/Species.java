@@ -7,11 +7,9 @@ public enum Species {
     ROBOCAT(false, 4, false),
     UNKNOWN;
 
-
     private Boolean canFly;
     private Number numberOfLegs;
     private Boolean hasFur;
-
 
     Species() {
     }

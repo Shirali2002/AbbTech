@@ -28,13 +28,6 @@ public class TestHumanOldFunctions {
     }
 
     @Test
-    public void TestToString() {
-        String res = "Man{name='Ferhad', surname='Adigozelov', year=2012, iq=50, " +
-                "schedule=[[MONDAY, do homework], [FRIDAY, Take the dog for a walk.]]}";
-        assertEquals(res, human1.toString());
-    }
-
-    @Test
     public void TestValidEquals() {
         assertEquals(human1, human2);
     }
