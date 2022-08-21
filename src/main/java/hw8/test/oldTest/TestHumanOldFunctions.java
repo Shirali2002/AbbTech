@@ -2,9 +2,11 @@ package hw8.test.oldTest;
 
 import hw8.abstracts.AbstractHuman;
 import hw8.concretes.Man;
+import hw8.concretes.Woman;
 import hw8.enums.DayOfWeek;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 import java.util.Map;
 
@@ -13,9 +15,12 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 
 public class TestHumanOldFunctions {
+    AbstractHuman human;
     AbstractHuman human1;
     AbstractHuman human2;
     AbstractHuman human3;
+    Man man;
+    Woman woman;
 
     @BeforeEach
     public void testEnv(){
@@ -45,5 +50,26 @@ public class TestHumanOldFunctions {
     @Test
     public void TestInvalidHashcode() {
         assertNotEquals(human1.hashCode(), human3.hashCode());
+    }
+
+    @Test
+    public void testAbstractHumanGreetPetByOverride(){
+        human = Mockito.mock(AbstractHuman.class);
+        human.greetPet();
+        Mockito.verify(human).greetPet();
+    }
+
+    @Test
+    public void testManRepairCar(){
+        man = Mockito.mock(Man.class);
+        man.repairCar();
+        Mockito.verify(man).repairCar();
+    }
+
+    @Test
+    public void testWomanMakeUp(){
+        woman = Mockito.mock(Woman.class);
+        woman.makeUp();
+        Mockito.verify(woman).makeUp();
     }
 }

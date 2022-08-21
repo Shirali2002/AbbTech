@@ -1,8 +1,10 @@
 package hw8.test.oldTest;
 
+import hw8.abstracts.AbstractPet;
 import hw8.concretes.Dog;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -12,9 +14,11 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 
 public class TestPetOldFunctions {
+    Dog dog;
     Dog pet1;
     Dog pet2;
     Dog pet3;
+    AbstractPet pet;
 
     @BeforeEach
     public void testEnv(){
@@ -42,4 +46,19 @@ public class TestPetOldFunctions {
     public void testInvalidHashcode(){
         assertNotEquals(pet1.hashCode(), pet3.hashCode());
     }
+
+    @Test
+    public void testDogRespond(){
+        pet = Mockito.mock(AbstractPet.class);
+        pet.respond();
+        Mockito.verify(pet).respond();
+    }
+
+    @Test
+    public void testDogFoul(){
+        dog = Mockito.mock(Dog.class);
+        dog.foul();
+        Mockito.verify(dog).foul();
+    }
+
 }

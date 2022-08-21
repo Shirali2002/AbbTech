@@ -109,12 +109,12 @@ public class Family implements HumanCreator {
   }
 
   private boolean deleteChildProcess(int index) {
-    if (index == -1){
+    int oldLen = children.size();
+    if (index < 0 || index >= oldLen){
       return false;
     }
     children.get(index).setFamily(null);
     children.get(index).setStatus(Status.NONE);
-    int oldLen = children.size();
     children.remove(index);
     return childProcessCheck(
         oldLen,
