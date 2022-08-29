@@ -1,20 +1,24 @@
-package hw9.concretes;
+package hw9.model.impl;
 
-import hw9.abstracts.AbstractHuman;
-import hw9.abstracts.AbstractPet;
-import hw9.abstracts.HumanCreator;
-import hw9.enums.Status;
-
+import hw9.model.inter.AbstractHuman;
+import hw9.model.inter.AbstractPet;
+import hw9.model.inter.HumanCreatorInter;
+import hw9.model.enums.Status;
 import java.time.LocalDate;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Objects;
+import java.util.Random;
+import java.util.Set;
 
 /**
  * Family class is keep the Family members.
  */
-public class Family implements HumanCreator {
-  private List<AbstractHuman> children;
-  private Set<AbstractPet> pet;
-
+public class Family implements HumanCreatorInter {
+  private final List<AbstractHuman> children;
+  private final Set<AbstractPet> pets;
   private final Woman mother;
   private final Man father;
   private final List<String> boyNameList;
@@ -31,6 +35,7 @@ public class Family implements HumanCreator {
     /* initialize process default array for children array.
        If user do not initialize children array, children will not get null. */
     this.children = new ArrayList<>();
+    this.pets = new HashSet<>();
 
     this.boyNameList = Arrays.asList("Natiq", "Samir", "Talib", "Rafiq", "Royal");
     this.girlNameList = Arrays.asList("Zohre", "Sehla", "Gunay", "Meleyke", "Hemide");
@@ -45,7 +50,7 @@ public class Family implements HumanCreator {
   public Family(Woman mother, Man father, List<AbstractHuman> children) {
     this.mother = mother;
     this.father = father;
-    this.children = children;
+    this.children.addAll(children);
     setFamilyToParent(mother, father);
     setFamilyToChildren(children);
   }
@@ -53,15 +58,15 @@ public class Family implements HumanCreator {
   public Family(Woman mother, Man father, Set<AbstractPet> pet) {
     this.mother = mother;
     this.father = father;
-    this.pet = pet;
+    this.pets.addAll(pet);
     setFamilyToParent(mother, father);
   }
 
   public Family(Woman mother, Man father, Set<AbstractPet> pet, List<AbstractHuman> children) {
     this.mother = mother;
     this.father = father;
-    this.children = children;
-    this.pet = pet;
+    this.children.addAll(children);
+    this.pets.addAll(pet);
     setFamilyToParent(mother, father);
     setFamilyToChildren(children);
   }
@@ -78,12 +83,8 @@ public class Family implements HumanCreator {
     return children;
   }
 
-  public Set<AbstractPet> getPet() {
-    return pet;
-  }
-
-  public void setPet(Set<AbstractPet> pet) {
-    this.pet = pet;
+  public Set<AbstractPet> getPets() {
+    return pets;
   }
 
   /* We use functional interface because we have to check both addChild and deleteChild methods
@@ -97,7 +98,6 @@ public class Family implements HumanCreator {
     child.setStatus(Status.CHILD);
     int oldLen = children.size();
     children.add(child);
-    System.out.println(children.size());
     return childProcessCheck(
         oldLen,
         children.size(),
@@ -194,6 +194,42 @@ public class Family implements HumanCreator {
   }
 
   @Override
+  public AbstractHuman bornChild(String maleName, String femaleName) {
+    Random random = new Random();
+    boolean childSex = random.nextBoolean();
+    AbstractHuman child;
+    if (childSex) {
+      child = new Man(
+          maleName,
+          father.getSurname(),
+          LocalDate.now().getYear()
+      );
+    } else {
+      child = new Woman(
+          femaleName,
+          father.getSurname(),
+          LocalDate.now().getYear()
+      );
+    }
+    int iq = father.getIq()!=null && mother.getIq()!=null
+        ? (father.getIq() + mother.getIq()) / 2
+        : 0;
+    child.setIq(iq);
+    child.setStatus(Status.CHILD);
+    child.setFamily(this);
+
+    addChild(child);
+
+    return child;
+  }
+
+  public void addPet(AbstractPet pet){
+    if (pet != null){
+      this.pets.add(pet);
+    }
+  }
+
+  @Override
   public boolean equals(Object o) {
     /* Here we equate only the mother and father of the family.
      *  Because if mother and father are equal, it means that the family is also equal.*/
@@ -207,13 +243,13 @@ public class Family implements HumanCreator {
     return mother.equals(family.mother)
         && father.equals(family.father)
         && children.equals(family.children)
-        && Objects.deepEquals(pet, family.pet);
+        && Objects.deepEquals(pets, family.pets);
 
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(mother, father, pet, children);
+    return Objects.hash(mother, father, pets, children);
   }
 
   @Override
@@ -228,8 +264,8 @@ public class Family implements HumanCreator {
     if (children != null) {
       stringBuilder.append(", children=").append(children);
     }
-    if (pet != null) {
-      stringBuilder.append(", pet=").append(pet);
+    if (pets != null) {
+      stringBuilder.append(", pet=").append(pets);
     }
     stringBuilder.append('}');
 

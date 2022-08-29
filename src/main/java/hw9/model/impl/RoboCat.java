@@ -1,7 +1,7 @@
-package hw9.concretes;
+package hw9.model.impl;
 
-import hw9.abstracts.AbstractPet;
-import hw9.enums.Species;
+import hw9.model.inter.AbstractPet;
+import hw9.model.enums.Species;
 
 import java.util.Set;
 
@@ -12,7 +12,7 @@ public class RoboCat extends AbstractPet {
     }
 
     public RoboCat() {
-        super();
+        this.setSpecies(Species.ROBOCAT);
     }
 
     public RoboCat(String nickname) {

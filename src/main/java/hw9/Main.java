@@ -1,27 +1,74 @@
 package hw9;
 
-import hw9.concretes.Dog;
-import hw9.concretes.Family;
-import hw9.concretes.Man;
-import hw9.concretes.Woman;
-import hw9.enums.DayOfWeek;
+import hw9.controller.FamilyController;
+import hw9.model.impl.Dog;
+import hw9.model.impl.Family;
+import hw9.model.impl.Man;
+import hw9.model.impl.Woman;
+import hw9.model.inter.AbstractHuman;
+import hw9.model.enums.DayOfWeek;
 
 import java.util.*;
 
 
 class Main {
-	public static void main(String[] args) {
-		Man father1 = new Man("father", "Adigozelov", 2012, 50,
-				Map.of(DayOfWeek.MONDAY, "do homework", DayOfWeek.SATURDAY, "Take the dog for a walk."));
-		Woman mother1 = new Woman("mother", "Adigozelova", 2012, 50,
-				Map.of(DayOfWeek.MONDAY, "do homework", DayOfWeek.SATURDAY, "Take the dog for a walk."));
-		Woman child1 = new Woman("child1", "Adigozelova", 2012, 50,
-				Map.of(DayOfWeek.MONDAY, "do homework", DayOfWeek.SATURDAY, "Take the dog for a walk."));
-		Dog pet1 = new Dog("Toplan", 3, 65,
-				new HashSet<>(Arrays.asList("eat", "drink", "sleep", "run")));
-		Family family1 = new Family(mother1, father1, new HashSet<>(List.of(pet1)), new ArrayList<>(List.of(child1)));
+  public static void main(String[] args) {
+    FamilyController controller = FamilyController.getInstance();
 
-		System.out.println(family1);
-	}
+    Man father1 = new Man("father1", "Adigozelov", 1980);
+    Woman mother1 = new Woman("mother1", "Adigozelova", 1982);
 
+    Man father2 = new Man("father2", "Adigozelov", 1980);
+    Woman mother2 = new Woman("mother2", "Adigozelova", 1982);
+
+    controller.createNewFamily(father1, mother1);
+    controller.createNewFamily(father2, mother2);
+
+    controller.displayAllFamilies();
+
+    System.out.println("\n\n");
+
+    Man father3 = new Man("father3", "Adigozelov", 1980);
+    Woman mother3 = new Woman("mother3", "Adigozelova", 1982);
+    controller.createNewFamily(father3, mother3);
+    controller.deleteFamilyByIndex(2);
+    controller.displayAllFamilies();
+
+    System.out.println("\n\n");
+
+    System.out.println(controller.bornChild(controller.getFamilyById(0), "Kamil", "Samira"));
+
+    System.out.println("\n\n");
+
+    Man child1 = new Man("child1", "Adigozelov", 2010);
+    System.out.println(controller.adoptChild(controller.getFamilyById(1), child1));
+
+    System.out.println("\n\n");
+
+    controller.deleteAllChildrenOlderThan(20);
+
+    System.out.println("\n\n");
+
+    System.out.println(controller.count());
+
+    System.out.println("\n\n");
+
+    controller.addPet(0, new Dog());
+    System.out.println(controller.getPets(0));
+
+    System.out.println("\n\n");
+
+    System.out.println(controller.countFamiliesWithMemberNumber(2));
+
+    System.out.println("\n\n");
+
+    controller.getFamiliesBiggerThan(2);
+
+    System.out.println("\n\n");
+
+    controller.getFamiliesLessThan(3);
+
+    System.out.println("\n\n");
+
+  }
 }

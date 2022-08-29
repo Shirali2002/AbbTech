@@ -1,9 +1,9 @@
-package hw9.test.oldTest;
+package hw9.test;
 
-import hw9.abstracts.AbstractHuman;
-import hw9.concretes.Man;
-import hw9.concretes.Woman;
-import hw9.enums.DayOfWeek;
+import hw9.model.inter.AbstractHuman;
+import hw9.model.impl.Man;
+import hw9.model.impl.Woman;
+import hw9.model.enums.DayOfWeek;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 
-public class TestHumanOldFunctions {
+public class TestHuman {
     AbstractHuman human;
     AbstractHuman human1;
     AbstractHuman human2;

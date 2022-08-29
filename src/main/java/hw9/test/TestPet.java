@@ -1,7 +1,7 @@
-package hw9.test.oldTest;
+package hw9.test;
 
-import hw9.abstracts.AbstractPet;
-import hw9.concretes.Dog;
+import hw9.model.inter.AbstractPet;
+import hw9.model.impl.Dog;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 
-public class TestPetOldFunctions {
+public class TestPet {
     Dog dog;
     Dog pet1;
     Dog pet2;

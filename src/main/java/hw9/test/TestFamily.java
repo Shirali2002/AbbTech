@@ -1,24 +1,27 @@
-package hw9.test.oldTest;
+package hw9.test;
 
 
-import hw9.abstracts.AbstractHuman;
-import hw9.concretes.Dog;
-import hw9.concretes.Family;
-import hw9.concretes.Man;
-import hw9.concretes.Woman;
-import hw9.enums.DayOfWeek;
-import hw9.enums.Status;
+import hw9.model.inter.AbstractHuman;
+import hw9.model.impl.Dog;
+import hw9.model.impl.Family;
+import hw9.model.impl.Man;
+import hw9.model.impl.Woman;
+import hw9.model.enums.DayOfWeek;
+import hw9.model.enums.Status;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 
-public class TestFamilyOldFunctions {
+public class TestFamily {
   Family family;
   Family family1;
   Family family2;

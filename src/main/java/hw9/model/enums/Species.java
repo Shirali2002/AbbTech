@@ -1,4 +1,4 @@
-package hw9.enums;
+package hw9.model.enums;
 
 public enum Species {
     DOG(false, 4, true),

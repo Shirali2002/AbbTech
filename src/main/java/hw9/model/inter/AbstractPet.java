@@ -1,6 +1,6 @@
-package hw9.abstracts;
+package hw9.model.inter;
 
-import hw9.enums.Species;
+import hw9.model.enums.Species;
 
 import java.util.HashSet;
 import java.util.Objects;
@@ -127,15 +127,15 @@ public abstract class AbstractPet {
         StringBuilder stringBuilder = new StringBuilder();
 
         if (species == null) return "";
-        else {
-            String speciesName = species.name().charAt(0) + species.name().substring(1).toLowerCase();
-            stringBuilder.append(speciesName).append("{");
+
+        String speciesName = species.name().charAt(0) + species.name().substring(1).toLowerCase();
+        stringBuilder.append(speciesName).append("{");
+
+        if(species != Species.UNKNOWN){
             stringBuilder.append(speciesName).append(species.isCanFly() ? " can fly. " : " can not fly. ");
             stringBuilder.append(speciesName).append(String.format(" has %d legs. ", (Integer) species.getNumberOfLegs()));
             stringBuilder.append(speciesName).append(species.isHasFur() ? " has fur. " : " has not fur. ");
-
         }
-        ;
 
         if (nickname == null) return stringBuilder.append('}').toString();
         else stringBuilder.append("nickname='").append(nickname).append('\'');

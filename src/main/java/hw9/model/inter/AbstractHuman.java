@@ -1,9 +1,9 @@
-package hw9.abstracts;
+package hw9.model.inter;
 
 
-import hw9.concretes.Family;
-import hw9.enums.DayOfWeek;
-import hw9.enums.Status;
+import hw9.model.impl.Family;
+import hw9.model.enums.DayOfWeek;
+import hw9.model.enums.Status;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -109,7 +109,7 @@ public abstract class AbstractHuman {
       return;
     }
 
-    this.family.getPet().forEach(p -> {
+    this.family.getPets().forEach(p -> {
       System.out.printf("I have a %s, he is %d years old, he is %s\n",
           p.getSpecies(),
           p.getAge(),
@@ -123,7 +123,7 @@ public abstract class AbstractHuman {
       return false;
     }
     int pseudorandom = new Random().nextInt(99) + 1;
-    this.family.getPet().forEach(p -> {
+    this.family.getPets().forEach(p -> {
       if (isTimeFeed) {
         System.out.printf("Hm... I will feed %s/\n", p.getNickname());
       } else if (p.getTrickLevel() > pseudorandom) {
@@ -137,7 +137,7 @@ public abstract class AbstractHuman {
   }
 
   protected boolean hasNotPet() {
-    return this.family.getPet().size() == 0;
+    return this.family.getPets().size() == 0;
   }
 
   @Override

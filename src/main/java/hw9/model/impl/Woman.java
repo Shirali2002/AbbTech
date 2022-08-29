@@ -1,7 +1,7 @@
-package hw9.concretes;
+package hw9.model.impl;
 
-import hw9.abstracts.AbstractHuman;
-import hw9.enums.DayOfWeek;
+import hw9.model.inter.AbstractHuman;
+import hw9.model.enums.DayOfWeek;
 
 import java.util.Map;
 
@@ -21,7 +21,7 @@ public class Woman extends AbstractHuman {
     @Override
     public void greetPet() {
         if (super.hasNotPet())    return;
-        super.getFamily().getPet().forEach(p -> System.out.printf("Hello, %s\n", p.getNickname()));
+        super.getFamily().getPets().forEach(p -> System.out.printf("Hello, %s\n", p.getNickname()));
     }
 
     public void makeUp(){

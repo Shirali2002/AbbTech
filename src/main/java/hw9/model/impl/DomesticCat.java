@@ -1,8 +1,8 @@
-package hw9.concretes;
+package hw9.model.impl;
 
-import hw9.abstracts.AbstractPet;
-import hw9.abstracts.FoulInter;
-import hw9.enums.Species;
+import hw9.model.inter.AbstractPet;
+import hw9.model.inter.FoulInter;
+import hw9.model.enums.Species;
 
 import java.util.Set;
 
@@ -13,7 +13,7 @@ public class DomesticCat extends AbstractPet implements FoulInter {
     }
 
     public DomesticCat() {
-        super();
+        this.setSpecies(Species.DOMESTICCAT);
     }
 
     public DomesticCat(String nickname) {
