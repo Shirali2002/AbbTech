@@ -37,12 +37,13 @@ class Main {
 
     System.out.println("\n\n");
 
-    System.out.println(controller.bornChild(controller.getFamilyById(0), "Kamil", "Samira"));
+    controller.getFamilyById(0).ifPresent(optionalFamily ->
+        System.out.println(controller.bornChild(optionalFamily, "Kamil", "Samira")));
 
     System.out.println("\n\n");
 
     Man child1 = new Man("child1", "Adigozelov", "12/10/2010");
-    System.out.println(controller.adoptChild(controller.getFamilyById(1), child1));
+    System.out.println(controller.adoptChild(controller.getFamilyById(1).orElse(null), child1));
 
     System.out.println("\n\n");
 

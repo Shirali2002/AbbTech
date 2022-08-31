@@ -9,8 +9,8 @@ import hw10.model.inter.AbstractHuman;
 import hw10.model.inter.AbstractPet;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -127,11 +127,11 @@ public class FamilyService {
     return familyDao.getAllFamilies().size();
   }
 
-  public Family getFamilyById(int index){
+  public Optional<Family> getFamilyById(int index){
     try {
-      return familyDao.getAllFamilies().get(index);
+      return Optional.of(familyDao.getAllFamilies().get(index));
     }catch (IndexOutOfBoundsException ex){
-      return null;
+      return Optional.empty();
     }
   }
 
