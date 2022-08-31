@@ -13,6 +13,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -214,7 +215,7 @@ public class TestFamilyController {
 
     Assertions.assertEquals(3, newSum);
   }
-
+  
   @Test
   public void testDeleteAllChildrenOlderThanWithOneEmptyFamily() {
     Woman child21 = new Woman("child11", "Adigozelova", "12/10/2009");
@@ -274,9 +275,9 @@ public class TestFamilyController {
     controller.addFamily(family1);
     controller.addFamily(family2);
 
-    Family familyInList = controller.getFamilyById(0);
+    Optional<Family> familyInList = controller.getFamilyById(0);
 
-    Assertions.assertEquals(family1, familyInList);
+    Assertions.assertEquals(Optional.of(family1), familyInList);
   }
 
   @Test
@@ -284,9 +285,10 @@ public class TestFamilyController {
     controller.addFamily(family1);
     controller.addFamily(family2);
 
-    Family familyInList = controller.getFamilyById(3);
+    Optional<Family> familyInList = controller.getFamilyById(3);
 
-    Assertions.assertNull(familyInList);
+    Assertions.assertEquals(Optional.empty(), familyInList);
+
   }
 
   @Test

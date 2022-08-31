@@ -8,10 +8,9 @@ import hw11.model.impl.Woman;
 
 class Main {
   public static void main(String[] args) {
-//    main1();
+    main1();
     Woman mother1 = new Woman("mother1", "Adigozelova", "30/09/1982");
     System.out.println("\nHuman toString: " + mother1 +"\n\n\n");
-    System.out.println(    mother1.getBirthDateWithDate().getYear());
   }
 
   public static void main1() {
@@ -38,12 +37,13 @@ class Main {
 
     System.out.println("\n\n");
 
-    System.out.println(controller.bornChild(controller.getFamilyById(0), "Kamil", "Samira"));
+    controller.getFamilyById(0).ifPresent(optionalFamily ->
+        System.out.println(controller.bornChild(optionalFamily, "Kamil", "Samira")));
 
     System.out.println("\n\n");
 
     Man child1 = new Man("child1", "Adigozelov", "12/10/2010");
-    System.out.println(controller.adoptChild(controller.getFamilyById(1), child1));
+    System.out.println(controller.adoptChild(controller.getFamilyById(1).orElse(null), child1));
 
     System.out.println("\n\n");
 

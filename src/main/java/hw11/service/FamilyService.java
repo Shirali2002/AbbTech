@@ -7,10 +7,11 @@ import hw11.model.impl.Man;
 import hw11.model.impl.Woman;
 import hw11.model.inter.AbstractHuman;
 import hw11.model.inter.AbstractPet;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -112,25 +113,26 @@ public class FamilyService {
     List<Family> allFamilies = familyDao.getAllFamilies();
     IntStream.range(0, allFamilies.size())
         .forEach(f -> {
-          List<AbstractHuman> children = allFamilies.get(f).getChildren();
-          List<AbstractHuman> removeList = IntStream.range(0, allFamilies.get(f).getChildren().size())
+              List<AbstractHuman> children = allFamilies.get(f).getChildren();
+              List<AbstractHuman> removeList = IntStream.range(0, allFamilies.get(f).getChildren().size())
                   .filter(index -> getAgeFromHumanYear(children.get(index)) > age)
                   .mapToObj(children::get)
                   .collect(Collectors.toList());
-          removeList.forEach(children::remove);
+              removeList.forEach(children::remove);
             }
         );
   }
+
 
   public int count(){
     return familyDao.getAllFamilies().size();
   }
 
-  public Family getFamilyById(int index){
+  public Optional<Family> getFamilyById(int index){
     try {
-      return familyDao.getAllFamilies().get(index);
+      return Optional.of(familyDao.getAllFamilies().get(index));
     }catch (IndexOutOfBoundsException ex){
-      return null;
+      return Optional.empty();
     }
   }
 
