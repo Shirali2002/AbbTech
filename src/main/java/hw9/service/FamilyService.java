@@ -7,9 +7,12 @@ import hw9.model.impl.Man;
 import hw9.model.impl.Woman;
 import hw9.model.inter.AbstractHuman;
 import hw9.model.inter.AbstractPet;
+
+import javax.swing.text.html.Option;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.IntStream;
 
 public class FamilyService {
@@ -123,11 +126,11 @@ public class FamilyService {
     return familyDao.getAllFamilies().size();
   }
 
-  public Family getFamilyById(int index){
+  public Optional<Family> getFamilyById(int index){
     try {
-      return familyDao.getAllFamilies().get(index);
+      return Optional.of(familyDao.getAllFamilies().get(index));
     }catch (IndexOutOfBoundsException ex){
-      return null;
+      return Optional.empty();
     }
   }
 

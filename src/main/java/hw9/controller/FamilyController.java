@@ -7,6 +7,7 @@ import hw9.model.inter.AbstractHuman;
 import hw9.model.inter.AbstractPet;
 import hw9.service.FamilyService;
 import java.util.List;
+import java.util.Optional;
 
 public class FamilyController {
   private static final FamilyController familyController;
@@ -71,7 +72,7 @@ public class FamilyController {
     return familyService.count();
   }
 
-  public Family getFamilyById(int index){
+  public Optional<Family> getFamilyById(int index){
     return familyService.getFamilyById(index);
   }
 
