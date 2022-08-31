@@ -184,14 +184,18 @@ public class TestFamilyController {
   @Test
   public void testDeleteAllChildrenOlderThan() {
     Woman child11 = new Woman("child11", "Adigozelova", "12/10/2006");
-    Man child12 = new Man("child12", "Adigozelov", "12/10/2014");
+    Man child12 = new Man("child12", "Adigozelov", "12/10/2020");
     family1.addChild(child11);
     family1.addChild(child12);
 
-    Woman child21 = new Woman("child11", "Adigozelova", "12/10/2009");
-    Man child22 = new Man("child12", "Adigozelov", "12/10/2015");
+    Woman child21 = new Woman("child21", "Adigozelova", "12/10/2020");
+    Man child22 = new Man("child22", "Adigozelov", "12/10/2009");
+    Man child23 = new Man("child23", "Adigozelov", "12/10/2020");
+    Man child24 = new Man("child24", "Adigozelov", "12/10/2009");
     family2.addChild(child21);
     family2.addChild(child22);
+    family2.addChild(child23);
+    family2.addChild(child24);
 
     controller.addFamily(family1);
     controller.addFamily(family2);
@@ -200,18 +204,17 @@ public class TestFamilyController {
         .map(f -> f.getChildren().size())
         .collect(Collectors.summarizingInt(Integer::intValue)).getSum();
 
-    Assertions.assertEquals(4, oldSum);
+    Assertions.assertEquals(6, oldSum);
 
-    controller.deleteAllChildrenOlderThan(12);
+    controller.deleteAllChildrenOlderThan(10);
 
     int newSum = (int) controller.getAllFamilies().stream()
         .map(f -> f.getChildren().size())
         .collect(Collectors.summarizingInt(Integer::intValue)).getSum();
 
-    Assertions.assertEquals(2, newSum);
-
+    Assertions.assertEquals(3, newSum);
   }
-
+  
   @Test
   public void testDeleteAllChildrenOlderThanWithOneEmptyFamily() {
     Woman child21 = new Woman("child11", "Adigozelova", "12/10/2009");

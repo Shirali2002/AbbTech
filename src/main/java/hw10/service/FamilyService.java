@@ -11,6 +11,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class FamilyService {
@@ -104,21 +105,23 @@ public class FamilyService {
   }
 
   private int getAgeFromHumanYear(AbstractHuman human){
-    return LocalDate.now().getYear() - new Date(human.getBirthDate()).getYear();
+    return LocalDate.now().getYear() - human.getBirthYear();
   }
 
   public void deleteAllChildrenOlderThan(int age) {
     List<Family> allFamilies = familyDao.getAllFamilies();
     IntStream.range(0, allFamilies.size())
         .forEach(f -> {
-          List<AbstractHuman> children = allFamilies.get(f).getChildren();
-          IntStream.range(0, allFamilies.get(f).getChildren().size()-1)
-                  .filter(index ->getAgeFromHumanYear(children.get(index)) > age)
+              List<AbstractHuman> children = allFamilies.get(f).getChildren();
+              List<AbstractHuman> removeList = IntStream.range(0, allFamilies.get(f).getChildren().size())
+                  .filter(index -> getAgeFromHumanYear(children.get(index)) > age)
                   .mapToObj(children::get)
-                  .forEach(children::remove);
+                  .collect(Collectors.toList());
+              removeList.forEach(children::remove);
             }
         );
   }
+
 
   public int count(){
     return familyDao.getAllFamilies().size();

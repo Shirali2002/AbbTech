@@ -92,6 +92,10 @@ public abstract class AbstractHuman {
     return new Date(birthDate);
   }
 
+  public int getBirthYear(){
+    return 1900 + getBirthDateWithDate().getYear();
+  }
+
   public void setBirthDate(String birthDate) throws ParseException {
     SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
     this.birthDate = dateFormat.parse(birthDate).getTime();
