@@ -5,10 +5,7 @@ import hw9.model.impl.Family;
 import hw9.model.enums.DayOfWeek;
 import hw9.model.enums.Status;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Random;
+import java.util.*;
 
 public abstract class AbstractHuman {
   private String name;
