@@ -96,9 +96,14 @@ public abstract class AbstractHuman {
     return 1900 + getBirthDateWithDate().getYear();
   }
 
-  public void setBirthDate(String birthDate) throws ParseException {
+  public void setBirthDate(String birthDate)  {
     SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-    this.birthDate = dateFormat.parse(birthDate).getTime();
+    try {
+
+     this.birthDate = dateFormat.parse(birthDate).getTime();
+    } catch (ParseException e) {
+      e.printStackTrace();
+    }
   }
 
   public Integer getIq() {
@@ -149,6 +154,12 @@ public abstract class AbstractHuman {
 
   }
 
+  public String describeAge(){
+    Calendar calendar = Calendar.getInstance();
+    calendar.setTimeInMillis(birthDate);
+    return String.format("%d/%d/%d", calendar.get(Calendar.DAY_OF_MONTH),
+        calendar.get(Calendar.MONTH)+1, calendar.get(Calendar.YEAR));
+  }
   public boolean feedPet(boolean isTimeFeed) {
     if (hasNotPet()) {
       return false;

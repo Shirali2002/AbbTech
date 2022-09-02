@@ -4,6 +4,7 @@ import hw11.model.inter.AbstractHuman;
 import hw11.model.impl.Man;
 import hw11.model.impl.Woman;
 import hw11.model.enums.DayOfWeek;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -30,6 +31,11 @@ public class TestHuman {
             Map.of(DayOfWeek.MONDAY, "do homework", DayOfWeek.FRIDAY, "Take the dog for a walk."));
         human3 = new Man("Ferid", "Adigozelov", "12/10/1990", 50,
             Map.of(DayOfWeek.MONDAY, "do homework", DayOfWeek.FRIDAY, "Take the dog for a walk."));
+    }
+
+    @Test
+    public void testDescribeAge(){
+        Assertions.assertEquals("12/10/2012", human1.describeAge());
     }
 
     @Test
