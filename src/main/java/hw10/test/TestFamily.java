@@ -12,11 +12,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
+
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -227,7 +224,6 @@ public class TestFamily {
 
     Assertions.assertNotNull(newChild.getName(), "new child name must not null.");
     Assertions.assertEquals(father1.getSurname(), newChild.getSurname(), "surname is not correct.");
-    Assertions.assertNotNull(newChild.getBirthDateWithDate().getYear(), "new child year must not null.");
     Assertions.assertEquals(((father1.getIq()+mother1.getIq())/2), newChild.getIq(), "iq is not correct.");
     Assertions.assertEquals(Status.CHILD, newChild.getStatus(), "status is not correct.");
     Assertions.assertEquals(family, newChild.getFamily(), "family is not correct.");

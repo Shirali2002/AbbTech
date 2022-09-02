@@ -7,7 +7,12 @@ import hw10.model.enums.Status;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Random;
 
 public abstract class AbstractHuman {
   private String name;
@@ -88,12 +93,14 @@ public abstract class AbstractHuman {
     return birthDate;
   }
 
-  public Date getBirthDateWithDate(){
-    return new Date(birthDate);
+  public Calendar getBirthDateWithCalendar(){
+    Calendar calendar = Calendar.getInstance();
+    calendar.setTimeInMillis(birthDate);
+    return calendar;
   }
 
   public int getBirthYear(){
-    return 1900 + getBirthDateWithDate().getYear();
+    return getBirthDateWithCalendar().get(Calendar.YEAR);
   }
 
   public void setBirthDate(String birthDate) throws ParseException {
