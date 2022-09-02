@@ -1,9 +1,9 @@
 package hw11.model.inter;
 
 
-import hw11.model.impl.Family;
 import hw11.model.enums.DayOfWeek;
 import hw11.model.enums.Status;
+import hw11.model.impl.Family;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -88,22 +88,19 @@ public abstract class AbstractHuman {
     return birthDate;
   }
 
-  public Date getBirthDateWithDate(){
-    return new Date(birthDate);
+  public Calendar getBirthDateWithCalendar(){
+    Calendar calendar = Calendar.getInstance();
+    calendar.setTimeInMillis(birthDate);
+    return calendar;
   }
 
   public int getBirthYear(){
-    return 1900 + getBirthDateWithDate().getYear();
+    return getBirthDateWithCalendar().get(Calendar.YEAR);
   }
 
-  public void setBirthDate(String birthDate)  {
+  public void setBirthDate(String birthDate) throws ParseException {
     SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-    try {
-
-     this.birthDate = dateFormat.parse(birthDate).getTime();
-    } catch (ParseException e) {
-      e.printStackTrace();
-    }
+    this.birthDate = dateFormat.parse(birthDate).getTime();
   }
 
   public Integer getIq() {
@@ -160,6 +157,7 @@ public abstract class AbstractHuman {
     return String.format("%d/%d/%d", calendar.get(Calendar.DAY_OF_MONTH),
         calendar.get(Calendar.MONTH)+1, calendar.get(Calendar.YEAR));
   }
+
 
   public boolean feedPet(boolean isTimeFeed) {
     if (hasNotPet()) {
@@ -252,7 +250,7 @@ public abstract class AbstractHuman {
     }
     if (birthDate != null) {
       SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-      stringBuilder.append(", birthDate=").append(dateFormat.format(new Date(birthDate)));
+      stringBuilder.append(", birthDate=").append(dateFormat.format(new Date()));
     }
     if (iq != null) {
       stringBuilder.append(", iq=").append(iq);
