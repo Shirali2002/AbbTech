@@ -1,11 +1,13 @@
 package hw12.controller;
 
+import hw12.exception.FamilyOverflowException;
 import hw12.model.impl.Family;
 import hw12.model.impl.Man;
 import hw12.model.impl.Woman;
 import hw12.model.inter.AbstractHuman;
 import hw12.model.inter.AbstractPet;
 import hw12.service.FamilyService;
+import hw12.util.Util;
 
 import java.util.List;
 import java.util.Optional;
@@ -33,12 +35,12 @@ public class FamilyController {
     familyService.displayAllFamilies();
   }
 
-  public void getFamiliesBiggerThan(int countMember) {
-    familyService.getFamiliesBiggerThan(countMember);
+  public List<Family> getFamiliesBiggerThan(int countMember) {
+    return familyService.getFamiliesBiggerThan(countMember);
   }
 
-  public void getFamiliesLessThan(int countMember) {
-    familyService.getFamiliesLessThan(countMember);
+  public List<Family> getFamiliesLessThan(int countMember) {
+    return familyService.getFamiliesLessThan(countMember);
   }
 
   public int countFamiliesWithMemberNumber(int countMember) {
@@ -58,11 +60,23 @@ public class FamilyController {
   }
 
   public Family bornChild(Family family, String masculine, String feminine) {
-    return familyService.bornChild(family, masculine, feminine);
+    try {
+      Util.checkFamilySize(family);
+      return familyService.bornChild(family, masculine, feminine);
+    } catch (FamilyOverflowException fex){
+      System.out.println("This Family is full.");
+      return family;
+    }
   }
 
   public Family adoptChild(Family family, AbstractHuman child) {
-    return familyService.adoptChild(family, child);
+    try {
+      Util.checkFamilySize(family);
+      return familyService.adoptChild(family, child);
+    } catch (FamilyOverflowException fex){
+      System.out.println("This Family is full.");
+      return family;
+    }
   }
 
   public void deleteAllChildrenOlderThan(int age) {

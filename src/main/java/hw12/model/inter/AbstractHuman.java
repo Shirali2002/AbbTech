@@ -249,8 +249,11 @@ public abstract class AbstractHuman {
       stringBuilder.append(", surname='").append(surname).append('\'');
     }
     if (birthDate != null) {
-      SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-      stringBuilder.append(", birthDate=").append(dateFormat.format(new Date()));
+      Calendar calendar = getBirthDateWithCalendar();
+      stringBuilder.append(", birthDate=")
+          .append(calendar.get(Calendar.DAY_OF_MONTH))
+          .append("/").append(calendar.get(Calendar.MONTH))
+          .append("/").append(calendar.get(Calendar.YEAR));
     }
     if (iq != null) {
       stringBuilder.append(", iq=").append(iq);

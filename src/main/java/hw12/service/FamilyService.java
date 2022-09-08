@@ -39,21 +39,21 @@ public class FamilyService {
         .forEach(
             n -> {
                 if (familyDao.getFamilyByIndex(n).isPresent())
-                  System.out.printf("%d - %s\n", n, familyDao.getFamilyByIndex(n).get());
+                  System.out.printf("%d - %s\n", n, familyDao.getFamilyByIndex(n).get().prettyFormat());
             }
         );
   }
 
-  public void getFamiliesBiggerThan(int countMember) {
-    familyDao.getAllFamilies().stream()
+  public List<Family> getFamiliesBiggerThan(int countMember) {
+    return familyDao.getAllFamilies().stream()
         .filter(f -> f.countFamily() > countMember)
-        .forEach(System.out::println);
+        .collect(Collectors.toList());
   }
 
-  public void getFamiliesLessThan(int countMember) {
-    familyDao.getAllFamilies().stream()
+  public List<Family> getFamiliesLessThan(int countMember) {
+    return familyDao.getAllFamilies().stream()
         .filter(f -> f.countFamily() < countMember)
-        .forEach(System.out::println);
+        .collect(Collectors.toList());
   }
 
   public int countFamiliesWithMemberNumber(int countMember) {
