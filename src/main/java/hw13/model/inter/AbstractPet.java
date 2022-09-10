@@ -22,12 +22,12 @@ public abstract class AbstractPet implements Serializable {
     private Integer trickLevel;
     private Set<String> habits;
 
-    static {
-        System.out.printf("a new class is being loaded(%s).\n", AbstractPet.class.getName());
-    }
+//    static {
+//        System.out.printf("a new class is being loaded(%s).\n", AbstractPet.class.getName());
+//    }
 
     {
-        System.out.printf("a new object is created(%s).\n", this.getClass());
+//        System.out.printf("a new object is created(%s).\n", this.getClass());
         this.species = Species.UNKNOWN;
         habits = new HashSet<>();
     }

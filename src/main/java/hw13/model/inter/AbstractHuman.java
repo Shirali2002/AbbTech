@@ -19,12 +19,12 @@ public abstract class AbstractHuman implements Serializable {
   private Map<DayOfWeek, String> schedule; //[day of the week] x [type of the activity]
   private Status status = Status.NONE;
 
-  static {
-    System.out.printf("a new class is being loaded(%s).\n", AbstractHuman.class.getName());
-  }
+//  static {
+//    System.out.printf("a new class is being loaded(%s).\n", AbstractHuman.class.getName());
+//  }
 
   {
-    System.out.printf("a new object is created(%s).\n", this.getClass());
+//    System.out.printf("a new object is created(%s).\n", this.getClass());
     schedule = new HashMap<>();
   }
 

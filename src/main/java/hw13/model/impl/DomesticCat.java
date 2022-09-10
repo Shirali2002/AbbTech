@@ -8,9 +8,9 @@ import java.util.Set;
 
 public class DomesticCat extends AbstractPet implements FoulInter {
 
-    static {
-        System.out.printf("a new class is being loaded(%s).\n", DomesticCat.class.getName());
-    }
+//    static {
+//        System.out.printf("a new class is being loaded(%s).\n", DomesticCat.class.getName());
+//    }
 
     public DomesticCat() {
         this.setSpecies(Species.DOMESTICCAT);

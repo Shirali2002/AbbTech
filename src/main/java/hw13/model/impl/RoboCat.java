@@ -7,9 +7,9 @@ import java.util.Set;
 
 public class RoboCat extends AbstractPet {
 
-    static {
-        System.out.printf("a new class is being loaded(%s).\n", RoboCat.class.getName());
-    }
+//    static {
+//        System.out.printf("a new class is being loaded(%s).\n", RoboCat.class.getName());
+//    }
 
     public RoboCat() {
         this.setSpecies(Species.ROBOCAT);

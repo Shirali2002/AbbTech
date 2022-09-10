@@ -2,8 +2,8 @@ package hw13.ui.impl;
 
 import hw13.App;
 import hw13.controller.FamilyController;
-import hw13.dao.impl.CollectionFamilyDao;
-import hw13.dao.impl.FileFamilyDao;
+import hw13.dao.impl.CollectionFamilyRepository;
+import hw13.dao.impl.FileFamilyRepository;
 import hw13.model.impl.Family;
 import hw13.model.impl.Man;
 import hw13.model.impl.Woman;
@@ -29,23 +29,21 @@ public class Menu extends AbstractMenu {
 
   @Override
   public void appExit() {
-    final FileFamilyDao fileFamilyDao = FileFamilyDao.getInstance();
-    fileFamilyDao.save(controller.getAllFamilies());
-    System.out.println("SAVED");
-    App.getInstance().stop();
-//    if (fileFamilyDao.save(controller.getAllFamilies())) {
-//      App.getInstance().stop();
-//    } else {
-//      System.out.println("""
-//          There is problem with File. Data is not saved to db.
-//          If you want to exit without save, please enter YES.
-//          """);
-//      Scanner sc = new Scanner(System.in);
-//      String s = sc.nextLine().toUpperCase();
-//      if (s.equals("YES")){
-//        App.getInstance().stop();
-//      }
-//    }
+    final FileFamilyRepository fileFamilyRepository = FileFamilyRepository.getInstance();
+    if (fileFamilyRepository.save(controller.getAllFamilies())) {
+      System.out.println("DATA SAVED");
+      App.getInstance().stop();
+    } else {
+      System.out.println("""
+          There is problem with File. Data is not saved to db.
+          If you want to exit without save, please enter YES.
+          """);
+      Scanner sc = new Scanner(System.in);
+      String s = sc.nextLine().toUpperCase();
+      if (s.equals("YES")){
+        App.getInstance().stop();
+      }
+    }
   }
 
   @Override
@@ -171,7 +169,8 @@ public class Menu extends AbstractMenu {
 
   @Override
   public void fillWithTestData() {
-    CollectionFamilyDao.getInstance().loadAllData();
+    CollectionFamilyRepository.getInstance().loadAllData();
+    System.out.println("Data filled!");
   }
 
   private void printIndexedFamilyList(int index, Family family) {

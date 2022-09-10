@@ -3,18 +3,22 @@ package hw13.dao.impl;
 import hw13.model.impl.Family;
 import hw13.util.Util;
 
-import java.io.*;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.List;
 import java.util.Optional;
 
-public class FileFamilyDao implements hw13.dao.inter.FileFamilyDaoInter {
-  private static final FileFamilyDao fileFamilyDao = new FileFamilyDao();
+public class FileFamilyRepository implements hw13.dao.inter.FileFamilyDaoInter {
+  private static final FileFamilyRepository FILE_FAMILY_REPOSITORY = new FileFamilyRepository();
 
-  private FileFamilyDao() {
+  private FileFamilyRepository() {
   }
 
-  public static FileFamilyDao getInstance() {
-    return fileFamilyDao;
+  public static FileFamilyRepository getInstance() {
+    return FILE_FAMILY_REPOSITORY;
   }
 
   @Override

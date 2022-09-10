@@ -7,5 +7,5 @@ import java.util.Optional;
 
 public interface FileFamilyDaoInter {
   boolean save(List<Family> fs);
-  Optional<List<Family>> load();
+  Optional<List<Family>> load(); //read
 }

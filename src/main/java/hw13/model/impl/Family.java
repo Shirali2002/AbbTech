@@ -21,12 +21,12 @@ public class Family implements HumanCreatorInter, Serializable {
   private final List<String> girlNameList;
 
 
-  static {
-    System.out.printf("a new class is being loaded(%s).\n", Family.class.getName());
-  }
+//  static {
+//    System.out.printf("a new class is being loaded(%s).\n", Family.class.getName());
+//  }
 
   {
-    System.out.printf("a new object is created(%s).\n", this.getClass());
+//    System.out.printf("a new object is created(%s).\n", this.getClass());
 
     /* initialize process default array for children array.
        If user do not initialize children array, children will not get null. */

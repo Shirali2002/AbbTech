@@ -7,9 +7,9 @@ import java.util.Set;
 
 public class Fish extends AbstractPet {
 
-    static {
-        System.out.printf("a new class is being loaded(%s).\n", Fish.class.getName());
-    }
+//    static {
+//        System.out.printf("a new class is being loaded(%s).\n", Fish.class.getName());
+//    }
 
     public Fish() {
         this.setSpecies(Species.FISH);

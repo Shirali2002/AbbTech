@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 public class Util {
   public static final String AppFamilyDbFile = "src/main/java/hw13/file/Db.bin";
+  public static final String LogDbFile = "src/main/java/hw13/file/Application.log";
   public static final int familySizeLimit = 5;
 
   public static Scanner getNewScanner(){

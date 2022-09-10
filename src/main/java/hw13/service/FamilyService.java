@@ -1,6 +1,6 @@
 package hw13.service;
 
-import hw13.dao.impl.CollectionFamilyDao;
+import hw13.dao.impl.CollectionFamilyRepository;
 import hw13.dao.inter.FamilyDaoInter;
 import hw13.model.impl.Family;
 import hw13.model.impl.Man;
@@ -17,7 +17,7 @@ import java.util.stream.IntStream;
 
 public class FamilyService {
   private static final FamilyService familyService;
-  private final FamilyDaoInter familyDao = CollectionFamilyDao.getInstance();
+  private final FamilyDaoInter familyDao = CollectionFamilyRepository.getInstance();
 
   static {
     familyService = new FamilyService();
