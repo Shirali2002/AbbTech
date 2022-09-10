@@ -20,7 +20,7 @@ public abstract class AbstractMenu {
         case "8" -> editFamilyByIndex();
         case "9" -> removeAllChildrenGreaterThanSpecifiedAge();
         case "exit" -> App.getInstance().stop();
-        default -> System.err.println("Input is not in choices!");
+        default -> System.out.println("Input is not in choices!");
       }
     }
   }

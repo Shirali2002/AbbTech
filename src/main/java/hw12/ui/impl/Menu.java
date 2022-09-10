@@ -102,14 +102,14 @@ public class Menu extends AbstractMenu {
   public void displayFamiliesCountLessThanNumber() {
     int countMember = Util.getIntWithScanner("Please enter the number of member: ");
     List<Family> matchedFamilies = controller.getFamiliesLessThan(countMember);
-    matchedFamilies.forEach(System.out::println);
+    matchedFamilies.forEach(this::printFamilyList);
   }
 
   @Override
   public void displayFamiliesCountGreaterThanNumber() {
     int countMember = Util.getIntWithScanner("Please enter the number of member: ");
     List<Family> matchedFamilies = controller.getFamiliesBiggerThan(countMember);
-    matchedFamilies.forEach(System.out::println);
+    matchedFamilies.forEach(this::printFamilyList);
   }
 
   @Override
@@ -147,6 +147,11 @@ public class Menu extends AbstractMenu {
 
   private void printIndexedFamilyList(int index, Family family) {
     System.out.println(Util.getIndexFromMachineToHuman(index) + "\n" + family.prettyFormat());
+    System.out.println("--------------------------------------------------------------------------------------------");
+  }
+
+  private void printFamilyList(Family family) {
+    System.out.println("\n" + family.prettyFormat());
     System.out.println("--------------------------------------------------------------------------------------------");
   }
 
