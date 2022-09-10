@@ -122,29 +122,40 @@ public abstract class AbstractPet {
         return Objects.hash(species, nickname, age, trickLevel);
     }
 
+    public String prettyPet(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("{species=").append(species.name());
+        if (nickname != null) sb.append(", nickname='").append(nickname).append('\'');
+        if (age != null) sb.append(", age=").append(age);
+        if (trickLevel != null) sb.append(", trickLevel=").append(trickLevel);
+        if (habits.size() != 0) sb.append(", habits=").append(habits);
+        sb.append('}');
+        return sb.toString();
+    }
+
     @Override
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
+        StringBuilder sb = new StringBuilder();
 
         if (species == null) return "";
 
         String speciesName = species.name().charAt(0) + species.name().substring(1).toLowerCase();
-        stringBuilder.append(speciesName).append("{");
+        sb.append(speciesName).append("{");
 
         if(species != Species.UNKNOWN){
-            stringBuilder.append(speciesName).append(species.isCanFly() ? " can fly. " : " can not fly. ");
-            stringBuilder.append(speciesName).append(String.format(" has %d legs. ", (Integer) species.getNumberOfLegs()));
-            stringBuilder.append(speciesName).append(species.isHasFur() ? " has fur. " : " has not fur. ");
+            sb.append(speciesName).append(species.isCanFly() ? " can fly. " : " can not fly. ");
+            sb.append(speciesName).append(String.format(" has %d legs. ", (Integer) species.getNumberOfLegs()));
+            sb.append(speciesName).append(species.isHasFur() ? " has fur. " : " has not fur. ");
         }
 
-        if (nickname == null) return stringBuilder.append('}').toString();
-        else stringBuilder.append("nickname='").append(nickname).append('\'');
-        if (age != null) stringBuilder.append(", age=").append(age);
-        if (trickLevel != null) stringBuilder.append(", trickLevel=").append(trickLevel);
-        if (habits.size() != 0) stringBuilder.append(", habits=").append(habits);
-        stringBuilder.append('}');
+        if (nickname == null) return sb.append('}').toString();
+        else sb.append("nickname='").append(nickname).append('\'');
+        if (age != null) sb.append(", age=").append(age);
+        if (trickLevel != null) sb.append(", trickLevel=").append(trickLevel);
+        if (habits.size() != 0) sb.append(", habits=").append(habits);
+        sb.append('}');
 
-        return stringBuilder.toString();
+        return sb.toString();
     }
 
     @Override

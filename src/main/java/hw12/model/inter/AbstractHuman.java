@@ -233,6 +233,37 @@ public abstract class AbstractHuman {
     }
   }
 
+  public String prettyHuman(){
+    StringBuilder stringBuilder = new StringBuilder();
+    stringBuilder.append('{');
+
+    if (name == null) {
+      return stringBuilder.append('}').toString();
+    } else {
+      stringBuilder.append("name='").append(name).append('\'');
+    }
+
+    if (surname != null) {
+      stringBuilder.append(", surname='").append(surname).append('\'');
+    }
+    if (birthDate != null) {
+      Calendar calendar = getBirthDateWithCalendar();
+      stringBuilder.append(", birthDate=")
+          .append(calendar.get(Calendar.DAY_OF_MONTH))
+          .append("/").append(calendar.get(Calendar.MONTH))
+          .append("/").append(calendar.get(Calendar.YEAR));
+    }
+    if (iq != null) {
+      stringBuilder.append(", iq=").append(iq);
+    }
+    if (schedule != null) {
+      stringBuilder.append(", schedule=").append(schedule);
+    }
+    stringBuilder.append('}');
+
+    return stringBuilder.toString();
+  }
+
   @Override
   public String toString() {
     StringBuilder stringBuilder = new StringBuilder();

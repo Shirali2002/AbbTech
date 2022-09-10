@@ -237,17 +237,17 @@ public class Family implements HumanCreatorInter {
 
   public String prettyFormat(){
     StringBuilder res = new StringBuilder("family:\n");
-    res.append("\tmother: ").append(getMainPartOfToString(mother.toString())).append(",\n");
-    res.append("\tfather: ").append(getMainPartOfToString(father.toString())).append(",\n");
+    res.append("\tmother: ").append(mother.prettyHuman()).append(",\n");
+    res.append("\tfather: ").append(father.prettyHuman()).append(",\n");
 
     if (children.size()>0){
       res.append("\tchildren:\n");
       for (AbstractHuman child: children) {
         String className = child.getClass().toString();
         if (className.endsWith("Man")) {
-          res.append("\t\tboy: ").append(getMainPartOfToString(child.toString())).append(",\n");
+          res.append("\t\tboy: ").append(child.prettyHuman()).append(",\n");
         } else if (className.endsWith("Woman")) {
-          res.append("\t\tgirl: ").append(getMainPartOfToString(child.toString())).append(",\n");
+          res.append("\t\tgirl: ").append(child.prettyHuman()).append(",\n");
         }
       }
     }
@@ -255,13 +255,7 @@ public class Family implements HumanCreatorInter {
     if (pets.size()>0){
       res.append("\tpets: [");
       for (AbstractPet pet: pets) {
-        res.append('{');
-        res.append("species=").append(pet.getSpecies().toString()).append(", ");
-        res.append("nickname='").append(pet.getNickname()).append("', ");
-        res.append("age=").append(pet.getAge()).append(", ");
-        res.append("trickLevel=").append(pet.getTrickLevel()).append(", ");
-        res.append("habits=").append(pet.getHabits());
-        res.append('}').append(", ");
+        res.append(pet.prettyPet()).append(", ");
       }
       res.delete(res.length()-2,res.length());
       res.append(']');
