@@ -5,7 +5,7 @@ import hw13.ui.inter.AbstractMenu;
 
 public class App {
   private static final App app = new App();
-  private static boolean Online;
+  private static boolean online;
 
   private App() {
   }
@@ -15,16 +15,16 @@ public class App {
   }
 
   public void start() {
-    Online = true;
+    online = true;
     AbstractMenu menu = Menu.getInstance();
     menu.startMenu();
   }
 
   public void stop(){
-    Online = false;
+    online = false;
   }
 
   public static boolean isOnline() {
-    return Online;
+    return online;
   }
 }
